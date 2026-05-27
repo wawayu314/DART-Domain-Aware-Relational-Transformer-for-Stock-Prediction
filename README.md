@@ -102,15 +102,15 @@ Stock/
 └── requirements.txt
 ```
 
-## Supplemental baselines
+## Baseline comparison models
 
-This repository now includes two additional benchmark backbones used in the
-thesis experiments:
+This repository includes the baseline models used alongside the main DART
+experiments under the same data splits and evaluation protocol:
 
 - `CausalStock`: price + news sentiment + sparse causal graph
 - `MambaStock`: lightweight selective state-space sequence model
 
-The benchmark entry point is:
+The benchmark entry point for these comparison models is:
 
 ```bash
 python src/sota_benchmark.py --market SP500 --models CausalStock,MambaStock
