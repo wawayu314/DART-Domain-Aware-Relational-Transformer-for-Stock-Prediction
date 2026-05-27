@@ -125,6 +125,7 @@ $RECYCLE.BIN/
 
 # Data files
 *.csv
+!dataset/**/*_ticker.csv
 *.pkl
 *.h5
 *.hdf5

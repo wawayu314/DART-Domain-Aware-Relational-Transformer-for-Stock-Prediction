@@ -102,7 +102,25 @@ Stock/
 └── requirements.txt
 ```
 
+## Supplemental baselines
 
+This repository now includes two additional benchmark backbones used in the
+thesis experiments:
 
+- `CausalStock`: price + news sentiment + sparse causal graph
+- `MambaStock`: lightweight selective state-space sequence model
 
+The benchmark entry point is:
+
+```bash
+python src/sota_benchmark.py --market SP500 --models CausalStock,MambaStock
+```
+
+Outputs are written to `result/` as CSV, XLSX, and JSON, and to `docs/` as a
+Markdown summary.
+
+`CausalStock` expects a combined daily sentiment file at
+`dataset/<MARKET>/news_sentiment/<market>_combined_daily_sentiment.csv`. The
+repo now keeps the small `*_ticker.csv` metadata files required to align those
+sentiment features with each market panel.
 
