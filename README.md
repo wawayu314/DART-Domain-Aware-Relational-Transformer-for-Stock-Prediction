@@ -102,25 +102,37 @@ Stock/
 └── requirements.txt
 ```
 
-## Baseline comparison models
+## Unified benchmark suite
 
-This repository includes the baseline models used alongside the main DART
-experiments under the same data splits and evaluation protocol:
+This repository includes a unified benchmark suite for the comparison models
+used alongside the main DART experiments under the same data splits and
+evaluation protocol.
 
-- `CausalStock`: price + news sentiment + sparse causal graph
-- `MambaStock`: lightweight selective state-space sequence model
+Supported comparison models:
 
-The benchmark entry point for these comparison models is:
+- `ALSTM`
+- `Transformer`
+- `PatchTST`
+- `iTransformer`
+- `TimesNetLite`
+- `CausalStock`
+- `MambaStock`
+
+The benchmark entry point is:
 
 ```bash
-python src/sota_benchmark.py --market SP500 --models CausalStock,MambaStock
+python src/sota_benchmark.py --market SP500 --models all
 ```
 
 Outputs are written to `result/` as CSV, XLSX, and JSON, and to `docs/` as a
 Markdown summary.
 
-`CausalStock` expects a combined daily sentiment file at
+Most comparison models use the price feature panel directly. Models that require
+market metadata or extra aligned inputs read them from the same dataset layout.
+
+When the selected model set includes multimodal inputs, provide the aligned
+daily sentiment file at
 `dataset/<MARKET>/news_sentiment/<market>_combined_daily_sentiment.csv`. The
-repo now keeps the small `*_ticker.csv` metadata files required to align those
-sentiment features with each market panel.
+repo now keeps the small `*_ticker.csv` metadata files required for market-wise
+alignment across the benchmark suite.
 
